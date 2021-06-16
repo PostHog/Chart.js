@@ -1,5 +1,5 @@
 {
-  "name": "chart.js",
+  "name": "@posthog/chart.js",
   "homepage": "https://www.chartjs.org",
   "description": "Simple HTML5 charts using the canvas element.",
   "version": "2.9.4",
@@ -28,6 +28,10 @@
     "dist/*.css",
     "dist/*.js"
   ],
+  "scripts": {
+    "build": "gulp build && gulp package",
+    "prepublishOnly": "npm run build"
+  },
   "devDependencies": {
     "clean-css": "^4.2.1",
     "coveralls": "^3.0.0",
