@@ -239,6 +239,24 @@ module.exports = {
 		},
 
 		/**
+		 * nearestX mode returns the nearest element to the cursor on the current X line
+		 * @function Chart.Interaction.modes.x
+		 * @param {Chart} chart - the chart we are returning items from
+		 * @param {Event} e - the event we are find things at
+		 * @param {InteractionOptions} options - options to use
+		 * @param {boolean} [useFinalPosition] - use final element position (animation target)
+		 * @return {InteractionItem[]} - items that are found
+		 */
+		nearestX: function(chart, e, options) {
+			var nearestItems = new Set(module.exports.modes.nearest(chart, e, options));
+			var xItems = indexMode(chart, e, {intersect: false});
+
+			return xItems.filter(function(item) {
+				return nearestItems.has(item);
+			});
+		},
+
+		/**
 		 * x mode returns the elements that hit-test at the current x coordinate
 		 * @function Chart.Interaction.modes.x
 		 * @param {Chart} chart - the chart we are returning items from
